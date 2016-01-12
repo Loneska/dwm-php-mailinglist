@@ -39,16 +39,21 @@ class SSMTP
     return $this->mailInstance->Send();
   }
   
-  public function sendConfirmation($to)
+  public function sendConfirmation($to, $token, $unregisterToken)
   {
     $message = file_get_contents('./../templates/registrationConfirmation.html'); 
-    $message = str_replace('%validateLink%', ValidateLink(), $message); 
+    $message = str_replace('%validateLink%', $this->ValidateLink($to, $token), $message); 
+    $message = str_replace('%unsubscribreLink%', $this->UnregisterLink($to, $unregisterToken), $message); 
     
     $this->sendEmail('register@loneska.be', $to, 'Registration confirmation', $message);
   }
   
-  public function ValidateLink(){
-    
+  public function ValidateLink($email, $token){
+    return "http://loneska.be/exPhp/www/validate.php?email=".$email."&token=".$token;
+  }
+  
+  public function UnregisterLink($email, $token){
+    return "http://loneska.be/exPhp/www/unsubscribe.php?email=".$email."&unregisteredtoken=".$token;
   }
 }
 ?>

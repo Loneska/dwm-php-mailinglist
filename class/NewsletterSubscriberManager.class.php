@@ -1,5 +1,5 @@
 <?php 
-require_once ('./../config/constants.php'); 
+require_once('./../config/constants.php'); 
 require_once('./../includes/SPDO.inc.php');
 require_once('./../class/NewsletterSubscriber.class.php');
 
@@ -63,10 +63,10 @@ class NewsletterSubscriberManager{
 		if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."'")->fetchColumn() == 0){
 			return Constants::IS_VALIDATE;
 		}else{
-			if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."' && Token = '".$unregistrationtoken."'")->fetchColumn() == 0){
-				return Constants::BAD_REQUEST;
+			if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."' && UnregisterToken = '".$unregistrationtoken."'")->fetchColumn() == 0){
+				return Constants::BAD_FORMAT;
 			}else{
-				$subscriber = $this->instance->query("SELECT * FROM NewsletterSubscriber WHERE Email = '".$email."' && Token = '".$unregistrationtoken."'")->fetchAll(PDO::FETCH_OBJ)[0];
+				$subscriber = $this->instance->query("SELECT * FROM NewsletterSubscriber WHERE Email = '".$email."' && UnregisterToken = '".$unregistrationtoken."'")->fetchAll(PDO::FETCH_OBJ)[0];
 				
 				return $this->Delete($subscriber->NewsletterSubscriberID);
 			}
@@ -84,8 +84,6 @@ class NewsletterSubscriberManager{
 	public function Delete($id){
 			$statement = $this->instance->prepare("DELETE FROM NewsletterSubscriber WHERE NewsletterSubscriberID = :id");
 			$statement->bindParam(':id', $id);
-			$statement->bindParam(':email', $email);
-			$statement->bindParam(':token', $token);
 			return $statement->execute();
 	}
 }

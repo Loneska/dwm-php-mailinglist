@@ -17,7 +17,7 @@ if( isset($_POST['newsletterSubscriberEmail']) )
         $NewsletterSubscriber = new NewsletterSubscriber(GUID(), GUID(), $newsletterSubscriberEmail);
         if($NSManager->Create($NewsletterSubscriber)){
             $mail = SSMTP::getInstance();
-            $mail->sendConfirmation($NewsletterSubscriber->getEmail());
+            $mail->sendConfirmation($NewsletterSubscriber->getEmail(), $NewsletterSubscriber->getToken(), $NewsletterSubscriber->getUnregisterToken());
             include './partials/successRegistration.php';
         }else{
             $emailError = Constants::EMAIL_ALREADY_EXIST;

@@ -1,6 +1,9 @@
 <?php 
 class Constants
 {
+	const BASEDIR = __DIR__;
+	const BASEFOLDER = "/dwm-php-mailinglist/www/";
+	
 	const DB_USERNAME = "root";
 	const DB_PASSWORD = "";
 	const DB_HOST = "localhost";
