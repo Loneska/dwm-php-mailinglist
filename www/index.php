@@ -4,7 +4,10 @@ require_once('./../config/constants.php');
 
 ?>	
 		<body>
+			
 		<?php
+        	include './partials/main.php';
+		
         	include './partials/registerform.php';
 		?>
 		</body>			

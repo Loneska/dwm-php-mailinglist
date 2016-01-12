@@ -5,10 +5,11 @@ require_once('./../includes/functions.inc.php');
 require_once('./../includes/SSMTP.inc.php');
 
 ?>	
-		<body>
-		<?php
-        	if( isset($_POST['newsletterSubscriberEmail']) )
+<body>
+<?php
+if( isset($_POST['newsletterSubscriberEmail']) )
 {
+   	include_once './partials/main.php';
     extract($_POST);
     if (!filter_var($newsletterSubscriberEmail, FILTER_VALIDATE_EMAIL)) {
         $emailError = Constants::BAD_FORMAT;
