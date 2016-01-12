@@ -34,3 +34,7 @@ input.form-control{
 .alert{
 	border-radius: 0px;
 }
+
+table{
+	color:#FFF !important;
+}
