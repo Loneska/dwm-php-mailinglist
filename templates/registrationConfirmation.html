@@ -1,8 +1,37 @@
 <html>
-    <body>
-    <h1>Account Details</h1>
-    <p>Thank you for registering on our site, your account details are as follows:<br>
-    <a href="%validateLink%">Confirm</a><br>
-    <a href="%unsubscribreLink%">Remove me from list</a><br>
-    </body>
-</html> 
+
+<style>
+    body {
+        background: #2B2D47;
+        padding:4em;
+    }
+    
+    .container {
+        width: 960px;
+        margin: auto;
+    }
+    
+    h1, p{
+        color:#FFF;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>THE MAILLING LIST PROJECT</h1>
+        <p>Merci pour votre inscription, celle-ci a bien été prise en compte. Il vous suffit à présent de cliquer sur ce lien
+            pour confirmer votre inscription.</p>
+
+        <p>
+            <a href="%validateLink%">Je confirme mon inscription</a>
+            <br>
+        </p>
+
+        <p>
+            Vous pouvez vous désabonner de la newsletter à tout moment en <a href="%unsubscribreLink%">cliquant ici</a>.
+        </p>
+    </div>
+</body>
+
+</html>

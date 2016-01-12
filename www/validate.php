@@ -17,10 +17,10 @@ require_once('./../class/NewsletterSubscriberManager.class.php');
         $result = $NSManager->Activate($email, $token);
         
         if($result == Constants::BAD_FORMAT || $result == Constants::EMAIL_NOT_FOUND){
-                echo '<div class="container"><div class="alert alert-danger" role="alert">Oups... Validation impossible !</div></div>';
+                echo '<div class="container"><div class="alert alert-danger" role="alert">Désolé mais cette adresse mail semble avoir déjà été enregistrée !</div></div>';
                 include './partials/registerform.php';
         }else{
-            echo '<div class="container"><div class="alert alert-success" role="alert">Validation réussie !</div></div>';
+            echo '<div class="container"><div class="alert alert-success" role="alert">Merci pour votre inscription, celle-ci a bien été prise en compte.</div></div>';
         }
     }else{
         header('Location: index.php');      

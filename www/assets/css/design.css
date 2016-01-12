@@ -1,0 +1,36 @@
+body, .jumbotron{
+	background: #2B2D47;
+}
+
+
+.jumbotron h1{
+	text-transform: uppercase;	
+	margin-bottom: 1em;
+}
+
+.jumbotron p{
+	font-weight: 300;
+}
+
+
+.btn{
+	border-radius: 0px;
+	font-size: 1em;
+	text-transform: uppercase;
+	padding:1.35em;
+}
+
+h1, p{
+	color:#FFF !important;
+}
+
+input.form-control{
+	border-radius: 0px;
+	font-size: 1em;
+	text-transform: uppercase;	
+	padding:2em;
+}
+
+.alert{
+	border-radius: 0px;
+}
