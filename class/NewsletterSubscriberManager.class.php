@@ -82,6 +82,10 @@ class NewsletterSubscriberManager{
 		}
 	}
 	
+	public function Count(){
+		return $this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber")->fetchColumn();
+	}
+	
 	public function Update($id, $email, $token){
 			$statement = $this->instance->prepare("UPDATE NewsletterSubscriber SET Email = :email, Token = :token WHERE NewsletterSubscriberID = :id");
 			$statement->bindParam(':id', $id);
