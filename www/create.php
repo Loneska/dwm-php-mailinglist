@@ -15,17 +15,27 @@ require_once('./../class/NewsletterSubscriberManager.class.php');
 				extract($_POST);
 				
 				$NManager = new NewsletterManager();
+				$NSManager = new NewsletterSubscriberManager();
 
 				$newsletter = new Newsletter($subject, $content);
 				
 				if($NManager->Create($newsletter)){
-					for($i = 0; $i < )
+					
+					$subscribers = $NSManager->Read();
+					
+					$mail = SSMTP::getInstance();
+					
+					for($i = 0; $i < count($subscribers); $i++){
+						$mail->sendEmail("news@loneska.be", $subscribers[$i]->Email, $subject, $content);
+					}
 				}
+				
+				header('Location: newsletterlist.php');      
 			}
 		
         	include './partials/main_admin.php';
 		
-        	include './partials/loginform.php';
+        	include './partials/createform.php';
 		?>
 		</body>			
 <?php 

@@ -6,8 +6,8 @@ class Newsletter{
 	private $content = "";
 	
 	public function __construct($subject, $content){
-		setSubject($subject);
-		setContent($content);
+		$this->setSubject($subject);
+		$this->setContent($content);
 	}
 	
 	public function getSubject(){

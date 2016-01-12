@@ -20,6 +20,7 @@ require_once('./../includes/SSMTP.inc.php');
         			header('Location: subscriberlist.php'); 
 					$_SESSION["Admin"] = $username;
 				}
+				
 			}
 		
         	include './partials/main_admin.php';
