@@ -49,11 +49,11 @@ class SSMTP
   }
   
   public function ValidateLink($email, $token){
-    return "http://loneska.be/exPhp/www/validate.php?email=".$email."&token=".$token;
+    return "http://loneska.be/php/mailinglist/www/validate.php?email=".$email."&token=".$token;
   }
   
   public function UnregisterLink($email, $token){
-    return "http://loneska.be/exPhp/www/unsubscribe.php?email=".$email."&unregisteredtoken=".$token;
+    return "http://loneska.be/php/mailinglist/www/unsubscribe.php?email=".$email."&unregisteredtoken=".$token;
   }
 }
 ?>
