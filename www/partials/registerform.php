@@ -1,3 +1,13 @@
+			
+			
+		<?php
+
+			if(isset($emailError) && $emailError ==  Constants::EMAIL_ALREADY_EXIST){
+				echo "Votre email existe déjà !";
+			}
+		
+		?>	
+			
 			<form action="register.php" method="POST">
 				<div class="form-group">
 					<label>M'inscrire</label>

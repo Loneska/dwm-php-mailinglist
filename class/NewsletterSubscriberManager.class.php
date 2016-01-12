@@ -37,10 +37,10 @@ class NewsletterSubscriberManager{
 	
 	public function Activate($email, $token){
 		if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."' && Token = '".$token."'")->fetchColumn() == 0){
-			return Constants::EMAIL_NOT_FOUND;
+			return Constants::BAD_FORMAT;
 		}else{
 			if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."'")->fetchColumn() == 0){
-				return Constants::IS_VALIDATE;
+				return Constants::EMAIL_NOT_FOUND;
 			}else{
 				$subscriber = $this->instance->query("SELECT * FROM NewsletterSubscriber WHERE Email = '".$email."' && Token = '".$token."'")->fetchAll(PDO::FETCH_OBJ)[0];
 				$date = new DateTime();
@@ -49,11 +49,18 @@ class NewsletterSubscriberManager{
 				
 				if($dateCreate > $date){
 					
-					return $this->Update($subscriber->NewsletterSubscriberID, $subscriber->Email, null);
+					$this->Update($subscriber->NewsletterSubscriberID, $subscriber->Email, null);
+					
+					return Constants::SUCCESS;
 					
 				}else{
-					return $this->Delete($subscriber->NewsletterSubscriberID);
+					
+					$this->Delete($subscriber->NewsletterSubscriberID);
+					
+					return Constants::BAD_FORMAT;
+					
 				}
+				
 			}
 
 		}
@@ -61,14 +68,16 @@ class NewsletterSubscriberManager{
 	
 	public function Unregister($email, $unregistrationtoken){
 		if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."'")->fetchColumn() == 0){
-			return Constants::IS_VALIDATE;
+			return Constants::EMAIL_NOT_FOUND;
 		}else{
 			if($this->instance->query("SELECT COUNT(*) FROM NewsletterSubscriber WHERE Email = '".$email."' && UnregisterToken = '".$unregistrationtoken."'")->fetchColumn() == 0){
 				return Constants::BAD_FORMAT;
 			}else{
 				$subscriber = $this->instance->query("SELECT * FROM NewsletterSubscriber WHERE Email = '".$email."' && UnregisterToken = '".$unregistrationtoken."'")->fetchAll(PDO::FETCH_OBJ)[0];
 				
-				return $this->Delete($subscriber->NewsletterSubscriberID);
+				$this->Delete($subscriber->NewsletterSubscriberID);
+				
+				return Constants::SUCCESS;
 			}
 		}
 	}

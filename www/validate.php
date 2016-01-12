@@ -12,9 +12,15 @@ require_once('./../class/NewsletterSubscriberManager.class.php');
         
         $NSManager = new NewsletterSubscriberManager();
     
-        $NSManager->Activate($email, $token);
+        $result = $NSManager->Activate($email, $token);
+        
+        if($result == Constants::BAD_FORMAT || $result == Constants::EMAIL_NOT_FOUND){
+                echo "Oups ... Validation impossible";
+                include './partials/registerform.php';
+        }else{
+            echo "Validation réussie !";
+        }
     }
-
 ?>
 	</body>			
 <?php 

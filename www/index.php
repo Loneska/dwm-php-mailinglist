@@ -1,5 +1,7 @@
 <?php 
 include_once './partials/header.php';
+require_once('./../config/constants.php');
+
 ?>	
 		<body>
 		<?php

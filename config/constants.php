@@ -21,5 +21,6 @@ class Constants
 	const EMAIL_NOT_FOUND = 2;
 	const BAD_FORMAT = 3;
 	CONST IS_VALIDATE = 4;
+	CONST SUCCESS = 5;
 }
 ?>

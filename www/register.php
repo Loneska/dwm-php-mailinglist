@@ -1,11 +1,13 @@
-
 <?php 
-
+include_once './partials/header.php';
 require_once('./../class/NewsletterSubscriberManager.class.php');
 require_once('./../includes/functions.inc.php');
 require_once('./../includes/SSMTP.inc.php');
 
-if( isset($_POST['newsletterSubscriberEmail']) )
+?>	
+		<body>
+		<?php
+        	if( isset($_POST['newsletterSubscriberEmail']) )
 {
     extract($_POST);
     if (!filter_var($newsletterSubscriberEmail, FILTER_VALIDATE_EMAIL)) {
@@ -27,4 +29,8 @@ if( isset($_POST['newsletterSubscriberEmail']) )
 }else{
       header('Location: index.php');      
 }
+		?>
+		</body>			
+<?php 
+include_once './partials/footer.php';
 ?>

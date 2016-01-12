@@ -9,13 +9,18 @@ require_once('./../class/NewsletterSubscriberManager.class.php');
 <?php
         	if( isset($_GET['email']) && isset($_GET['unregisteredtoken']))
                 {
-                        var_dump($_GET);
-                        
                         extract($_GET);
                         
                         $NSManager = new NewsletterSubscriberManager();
                 
-                        $NSManager->Unregister($email, $unregisteredtoken);
+                        $result = $NSManager->Unregister($email, $unregisteredtoken);
+                        
+                        if($result == Constants::BAD_FORMAT || $result == Constants::EMAIL_NOT_FOUND){
+                                echo "Oups ... Votre email n'as pas été trouvée !";
+                        }else{
+                                echo "Suppression réussie !";
+                                include './partials/registerform.php';
+                        }
                 }
 ?>
 	</body>			
